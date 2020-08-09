@@ -9,7 +9,7 @@ public class AppTarefa {
 		PreparedStatement tabela = null;
 		try {
 			
-	   Connection conexão = DriverManager.getConnection("jdbc:h2:~/teste2","id","numero");
+	   Connection conexão = DriverManager.getConnection("jdbc:h2:~/teste2","sa","");
 	   tabela = conexão.prepareStatement("insert into teste (mensagem) values (?)");
 	   for (int i = 0; i < 2000; i++) {
 			tabela.setString(i,"foi");
