@@ -1,4 +1,4 @@
-package aula20200814.repository;
+package adsis4s2020.Maxi.fork;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,8 +101,20 @@ public class ImóvelRepository {
 		}
 		return null;
 	}
-	
-	
+
+
+	public void deleteById(Long id) throws SQLException {
+		PreparedStatement psDelete = connectionManager.prepareStatement("delete from imovel where id = ?");
+		try {
+			psDelete.setLong(1, id);
+			psDelete.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			psDelete.close();
+		}
+		
+	}
 
 
 
