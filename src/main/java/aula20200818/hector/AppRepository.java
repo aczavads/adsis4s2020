@@ -17,7 +17,10 @@ public class AppRepository {
 			System.out.println("Procurando pelo id: " + id);
 
 			Imóvel encontradoPeloId = repo.findById(id);
-			System.out.println(encontradoPeloId.toString());			
+			System.out.println(encontradoPeloId.toString());
+			
+			repo.deleteById(id);
+			System.out.println("Resultado do findById: "+id +" após a exclusão: " + repo.findById(id));
 			
 		} catch (Exception e) {
 			e.printStackTrace();			

@@ -103,5 +103,19 @@ public class ImóvelRepository {
 	}
 
 
+	public void deleteById(Long id) throws SQLException {
+		PreparedStatement pr = null;
+		String sql = "delete from imovel where id = ?";
+		try {
+			pr = connectionManager.prepareStatement(sql);
+			pr.setLong(1, id);
+			pr.executeUpdate();
+		} finally {
+			pr.close();
+		}
+		
+	}
+
+
 
 }	
