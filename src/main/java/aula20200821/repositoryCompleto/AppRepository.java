@@ -14,7 +14,7 @@ public class AppRepository {
 			apto777b = repo.save(apto777b);
 			connManager.commit();
 			
-			Long id = apto777b.getId();
+			/*Long id = apto777b.getId();
 			System.out.println("Procurando pelo id: " + id);
 
 			/*
@@ -24,12 +24,12 @@ public class AppRepository {
 			repo.deleteById(id);
 			System.out.println("Recuperado após exclusão: " + repo.findById(id));
 			*/
-			List<Imóvel> imóveisCadastrados = repo.findAll();
+			/*List<Imóvel> imóveisCadastrados = repo.findAll();
 			System.out.println("Todos os imóveis >>>>");
 			for (Imóvel imóvel : imóveisCadastrados) {
 				System.out.println(imóvel.toString());
 			}
-			System.out.println("<<<< Fim.");
+			System.out.println("<<<< Fim.");*/
 
 			
 		} catch (Exception e) {
