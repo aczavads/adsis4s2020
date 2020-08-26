@@ -113,7 +113,7 @@ public class ProdutoRepository {
 		
 	}
 	
-	public List<Produto> findAll() throws SQLException{
+	/*public List<Produto> findAll() throws SQLException{
 		List<Produto> all = new ArrayList<>();
 		PreparedStatement pstSelect = connectionManager.preparedStatement("select * from td_produto");
 		ResultSet st = pstSelect.executeQuery();
@@ -132,6 +132,8 @@ public class ProdutoRepository {
 		
 		
 		return all;
-	}
+	}*/
+	
+	
 
 }

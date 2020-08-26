@@ -1,5 +1,7 @@
 package adsis4s2020.Maxi.fork.produto;
+import java.io.*;
 import java.sql.*;
+import java.util.Scanner;
 public class AppProdutoRepository
 {
 
@@ -24,6 +26,6 @@ public class AppProdutoRepository
 		finally {
 			conM.close();
 		}
+		
+	}	
 	}
-
-}
