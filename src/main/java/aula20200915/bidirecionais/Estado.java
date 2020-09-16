@@ -1,11 +1,13 @@
-package aula20200911.simplificando;
+package aula20200915.bidirecionais;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Estado {
@@ -14,6 +16,9 @@ public class Estado {
 
     @Column(unique = true)
     private String nome;
+
+    @ManyToOne
+    private Pais pais;
 
     public Estado() {
         this.id = UUID.randomUUID().toString();
@@ -32,6 +37,14 @@ public class Estado {
     }
     public String getId() {
         return id;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+
+    public Pais getPais() {
+        return pais;
     }
 
     @Override

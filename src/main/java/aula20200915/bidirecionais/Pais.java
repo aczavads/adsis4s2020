@@ -1,4 +1,4 @@
-package aula20200911.simplificando;
+package aula20200915.bidirecionais;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,9 @@ public class Pais {
     @Id
     private String id;
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pais_id")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
+    //@JoinColumn(name = "pais_id")
     private List<Estado> estados = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -60,5 +61,14 @@ public class Pais {
     public List<Estado> getEstados() {
         return estados;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            "}";
+    }
+
 
 }
