@@ -20,10 +20,10 @@ public class Pedido extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date emitidoEm;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pessoa cliente;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido",fetch = FetchType.LAZY)
     private List<ItemPedido> itens = new ArrayList<>();
 
     public Pedido() {
@@ -45,7 +45,12 @@ public class Pedido extends BaseEntity {
         return emitidoEm;
     }
 
+    public Pessoa getCliente() {
+        return cliente;
+    }
+
     public BigDecimal getValorTotal() {
+        System.out.println(":::::::>>> tipo da coleção Pedido.itens: " + itens.getClass().getName());
         BigDecimal valorTotal = new BigDecimal("0.00");
         for (ItemPedido itemPedido : itens) {
             valorTotal = valorTotal.add(itemPedido.getValorTotal());

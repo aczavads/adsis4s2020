@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class AppVenda implements CommandLineRunner {
@@ -15,9 +16,11 @@ public class AppVenda implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         service.incluirDadosIniciais();
-        System.out.println("Total do pedido [1]: " + service.recuperarPedidoPeloNúmero(1).getValorTotal());
+        Pedido pedido1 = service.recuperarPedidoPeloNúmero(1);
+        System.out.println("Total do pedido [1]: " + pedido1.getValorTotal() + ", cliente: " + pedido1.getCliente().getNome());
     }
 
 
