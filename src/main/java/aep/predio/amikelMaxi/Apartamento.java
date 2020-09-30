@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,9 +18,10 @@ public class Apartamento {
 	private String numero;
 	private String descripcao;
 	
+	@ManyToOne
+	private Predio predio;
 	
-	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "garagApto")
 	private List<Garagem> garagensApartamento = new ArrayList<>();
 	
@@ -52,6 +55,13 @@ public class Apartamento {
 	}
 	public List<Garagem> getGaragensApartamento() {
 		return garagensApartamento;
+	}
+	public void setPredio(Predio predio) {
+		this.predio = predio;
+	}
+	
+	public Predio getPredio() {
+		return predio;
 	}
 
 	@Override

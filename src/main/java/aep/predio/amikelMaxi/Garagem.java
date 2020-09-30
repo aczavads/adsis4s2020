@@ -1,9 +1,13 @@
 package aep.predio.amikelMaxi;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Garagem {
@@ -12,6 +16,9 @@ public class Garagem {
 	private String codigo;
 	private String localizacao;
 	private String numero;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Apartamento> apartamentos = new ArrayList<>();
 	
 	public Garagem() {
 		this.codigo = UUID.randomUUID().toString();
