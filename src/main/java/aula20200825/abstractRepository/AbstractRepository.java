@@ -85,9 +85,26 @@ public abstract class AbstractRepository<ENTITY extends AbstractEntity> {
 		return found;
 	}
 	
-	
-	
-	
+	public abstract String getDeleteByIdCommand();
+
+	public void delete(Long id) throws SQLException {
+		PreparedStatement psDelete = connectionManager.prepareStatement(getDeleteByIdCommand());
+		psDelete.setLong(1, id);
+		try {
+			psDelete.executeUpdate();
+		} finally {
+			psDelete.close();
+		}
+	}
+	/*
+	{...}
+	Exemplo em um CorRepository que extends AbstractRepository<Cor>
+
+	public String getDeleteByIdCommand() {
+		return "delete from cor where id = ?";
+	}
+	*/
+
 	
 	public abstract String getCreateTableCommand();
 
