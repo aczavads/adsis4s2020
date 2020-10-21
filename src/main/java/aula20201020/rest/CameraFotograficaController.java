@@ -34,8 +34,13 @@ public class CameraFotograficaController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
-        repo.deleteById(id);
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+    	try {
+    		repo.deleteById(id);
+    		return ResponseEntity.ok().build();
+		} catch (Exception e) {
+    		return ResponseEntity.notFound().build();
+		}
     }
 
     @GetMapping("/{id}")
