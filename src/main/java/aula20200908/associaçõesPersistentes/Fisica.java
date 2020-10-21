@@ -32,6 +32,15 @@ public class Fisica extends Pessoa {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" nome='" + getNome() + "'" +
+			" cpf='" + getCpf() + "'" +
+			", rg='" + getRg() + "'" +
+			"}";
+	}
 	
 	
 

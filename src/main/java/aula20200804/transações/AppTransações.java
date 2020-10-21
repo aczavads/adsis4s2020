@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -19,6 +20,46 @@ public class AppTransações extends JDialog {
 	private JButton btnEfetivar = new JButton("Commit");
 	private Connection conexão = null;
 	
+
+	public void testarCloseDoResultSet2()  {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conexão.prepareStatement("select 1+1 as soma");
+			ps.setString(1, "x");
+			rs = ps.executeQuery();
+			//use o rs aqui...
+		} catch (Exception e) {
+			//tratar a exceção aqui.
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public void testarCloseDoResultSet() throws Exception {
+		try (PreparedStatement ps = conexão.prepareStatement("select 1+1 as soma")) {
+			ps.setString(1, "x");
+			try (ResultSet rs = ps.executeQuery()) {
+				//use o rs aqui...
+			}
+		}
+	}
+
 	public AppTransações() {
 		this.setLayout(new FlowLayout());
 		btnExecutar.addActionListener( new ActionListener() {		

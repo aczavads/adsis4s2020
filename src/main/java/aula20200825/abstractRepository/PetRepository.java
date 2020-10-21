@@ -54,4 +54,9 @@ public class PetRepository extends AbstractRepository<Pet> {
 		return new Pet(newId, entity.getNome() );
 	}
 
+	@Override
+	public String getDeleteByIdCommand() {
+		return "delete from pet where id = ?";
+	}
+
 }
