@@ -18,7 +18,7 @@ public abstract class AbstractRepository<ENTITY extends AbstractEntity> {
 	public abstract String getInsertCommand();
 	public abstract void setUpdateParametersFromEntity(PreparedStatement ps, ENTITY entity) throws SQLException;
 	public abstract ENTITY setInsertParametersFromEntity(PreparedStatement ps, Long newId, ENTITY entity) throws SQLException;
-	
+	public abstract String deleteCommand();
 	public ENTITY save(ENTITY entity) {
 		boolean exists = entity.getId() != null;
 		PreparedStatement psSave = null;
