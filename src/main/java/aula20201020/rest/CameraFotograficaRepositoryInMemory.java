@@ -31,7 +31,7 @@ public class CameraFotograficaRepositoryInMemory {
 
 	public void deleteById(String id) {
         if (!dados.containsKey(id)) {
-            throw new RuntimeException("Não existe uma câmera com o id [" + id + "]");
+            throw new NotFoundException("Não existe uma câmera com o id [" + id + "]");
         }
         dados.remove(id);
 	}

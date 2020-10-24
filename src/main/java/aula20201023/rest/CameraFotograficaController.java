@@ -1,6 +1,7 @@
-package aula20201020.rest;
+package aula20201023.rest;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/camerasfotograficas")
 public class CameraFotograficaController {
     @Autowired
-    private CameraFotograficaRepositoryInMemory repo;
+    private CameraFotograficaRepository repo;
 
     @GetMapping
     public List<CameraFotografica> getAll() {
@@ -45,8 +46,8 @@ public class CameraFotograficaController {
     public ResponseEntity<CameraFotografica> getById(@PathVariable("id") String id) {
     	try {
             //return ResponseEntity.ok(repo.findById(id));
-    		return ResponseEntity.status(HttpStatus.OK).body(repo.findById(id));
-		} catch (NotFoundException e) {
+    		return ResponseEntity.status(HttpStatus.OK).body(repo.findById(id).get());
+		} catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
 		}
     }
@@ -57,7 +58,7 @@ public class CameraFotograficaController {
             //throw new RuntimeException("IDs da URL e do objeto não conferem!");
             return ResponseEntity.badRequest().build();
         }
-        repo.update(camera);
+        repo.save(camera);
         return ResponseEntity.ok().build();
     }
 
