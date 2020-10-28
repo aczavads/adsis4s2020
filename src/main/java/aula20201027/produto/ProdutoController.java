@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +30,16 @@ public class ProdutoController {
 
     @PostMapping
     public String post(@RequestBody Produto novo) {
-        if (repo.findById(novo.getId()).isPresent()) {
+        if (repo.findById(novo.getId()).isPresent()) {            
             throw new RegistroDuplicadoException();
         }
         novo = repo.save(novo);
         return novo.getId();
+    }
+
+    @DeleteMapping("/{id}")    
+    public void deleteById(@PathVariable String id) {
+        repo.deleteById(id);
     }
 
 

@@ -2,6 +2,7 @@ package aula20201027;
 
 import java.util.NoSuchElementException;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,7 +13,7 @@ import aula20201027.produto.RegistroDuplicadoException;
 @ControllerAdvice
 public class ExceptionManager {
 
-    @ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler({NoSuchElementException.class, EmptyResultDataAccessException.class})
     public ResponseEntity<Void> handleNoSuchElementException() {
         return ResponseEntity.notFound().build();
     }
