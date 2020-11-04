@@ -6,6 +6,8 @@ import java.math.RoundingMode;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import aula20201027.BaseEntity;
 import aula20201027.produto.Produto;
 
@@ -33,24 +35,36 @@ public class ItemPedido extends BaseEntity {
         this.descontoPercentual = descontoPercentual;
         this.precoDeVenda = produto.getPrecoAtual();
     }
-    
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
     public Produto getProduto() {
         return produto;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return pedido;
     }
+
     public BigDecimal getQuantidade() {
         return quantidade;
     }
+
     public BigDecimal getDescontoPercentual() {
         return descontoPercentual;
     }
 
-	public BigDecimal getValorTotal() {
+    public BigDecimal getPrecoDeVenda() {
+        return precoDeVenda;
+    }
+
+    public BigDecimal getValorTotal() {
         return precoDeVenda.multiply(quantidade)
-               .multiply(new BigDecimal("1.00").subtract(descontoPercentual.divide(new BigDecimal("100.00")))).setScale(2, RoundingMode.HALF_DOWN);
-	}
+                .multiply(new BigDecimal("1.00").subtract(descontoPercentual.divide(new BigDecimal("100.00"))))
+                .setScale(2, RoundingMode.HALF_DOWN);
+    }
 
 }
