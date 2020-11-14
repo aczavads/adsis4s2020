@@ -1,5 +1,6 @@
 package aula20201110.consumindoRestApi;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,9 @@ public class AppConsumindoRestApi implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("= PREÇO MÉDIO DOS PRODUTOS ====================== ");
+        imprimirMédiaDoPreçoAtualDosProdutos();
+
         String id = criarNovoProduto("Novo", 125.13);
         
         System.out.println("= PELO ID ======================================= ");
@@ -32,14 +36,25 @@ public class AppConsumindoRestApi implements CommandLineRunner {
         System.out.println("= TODOS ========================================= ");
         imprimirTodosOsProdutos();
 
+        System.out.println("= PREÇO MÉDIO DOS PRODUTOS ====================== ");
+        imprimirMédiaDoPreçoAtualDosProdutos();
+
+
         excluirProdutoPeloId(id);
+    }
+
+    private void imprimirMédiaDoPreçoAtualDosProdutos() {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<BigDecimal> response = restTemplate.getForEntity(
+            "http://localhost:8080/api/produtos/média-do-preco-atual", 
+            BigDecimal.class); 
+        System.out.println(response.getBody());
     }
 
     private void excluirProdutoPeloId(String id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete("http://localhost:8080/api/produtos/" + id);
     }
-
     private String criarNovoProduto(String nome, double precoAtual) {
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", nome);
@@ -51,9 +66,7 @@ public class AppConsumindoRestApi implements CommandLineRunner {
         System.out.println("Status="+responsePost.getStatusCode());
         System.out.println(responsePost.getBody());
         return responsePost.getBody();
-
     }
-
     public void imprimirTodosOsProdutos() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Produto[]> responseProdutos = restTemplate.getForEntity(
@@ -62,9 +75,7 @@ public class AppConsumindoRestApi implements CommandLineRunner {
         for (Produto p : responseProdutos.getBody()) {
             System.out.println(p);
         }
-
     }
-
     public void imprimirProdutoPeloId(String id) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Produto> responseProduto = restTemplate.getForEntity(
@@ -72,7 +83,5 @@ public class AppConsumindoRestApi implements CommandLineRunner {
             Produto.class); 
         System.out.println("Status=" + responseProduto.getStatusCode());
         System.out.println(responseProduto.getBody());
-
     }
-    
 }

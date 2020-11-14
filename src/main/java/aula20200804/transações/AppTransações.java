@@ -15,6 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class AppTransações extends JDialog {
+	private static final long serialVersionUID = 1L;
 	private JButton btnExecutar = new JButton("Executar");
 	private JButton btnDesfazer = new JButton("Rollback");
 	private JButton btnEfetivar = new JButton("Commit");

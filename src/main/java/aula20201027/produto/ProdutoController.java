@@ -1,5 +1,7 @@
 package aula20201027.produto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProdutoController {
     @Autowired
     private ProdutoRepository repo;
+
+
+    @GetMapping("/média-do-preco-atual")
+    public BigDecimal getMédiaDoPreçoAtual() {
+        BigDecimal valor = new BigDecimal("0.00");
+        //return repo.obterMédiaDoPreçoAtualDosProdutos();
+        List<BigDecimal> preçosAtuais = repo.obterPreçosAtuaisDosProdutos();
+        for (BigDecimal preçoAtual : preçosAtuais) {
+            valor = valor.add(preçoAtual);
+        }
+        valor = valor.divide(
+            new BigDecimal(preçosAtuais.size()), 
+            RoundingMode.HALF_UP).setScale(2); 
+        return valor;
+    }
 
     @GetMapping
     public List<Produto> getAll() {

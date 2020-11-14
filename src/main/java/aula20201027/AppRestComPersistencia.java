@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppRestComPersistência {
+public class AppRestComPersistencia {
     public static void main(String[] args) {
-        SpringApplication.run(AppRestComPersistência.class, args);
+        SpringApplication.run(AppRestComPersistencia.class, args);
     }
 
 }
