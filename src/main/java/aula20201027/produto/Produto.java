@@ -37,4 +37,14 @@ public class Produto extends BaseEntity {
         this.precoAtual = precoAtual;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            " nome='" + getNome() + "'" +
+            ", precoAtual='" + getPrecoAtual() + "'" +
+            "}";
+    }
+
+
 }

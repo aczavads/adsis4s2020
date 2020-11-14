@@ -1,12 +1,12 @@
-package aula20201027;
+package aula20201106;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppRestComPersistência {
+public class AppHerançaController {
     public static void main(String[] args) {
-        SpringApplication.run(AppRestComPersistência.class, args);
+        SpringApplication.run(AppHerançaController.class, args);
     }
 
 }

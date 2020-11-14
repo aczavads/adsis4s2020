@@ -10,7 +10,7 @@ import aula20201027.BaseEntity;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa extends BaseEntity {
+public class Pessoa extends BaseEntity {
     private String nome;
 
     public String getNome() {
