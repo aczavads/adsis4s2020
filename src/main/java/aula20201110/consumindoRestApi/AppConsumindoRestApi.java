@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,6 +20,7 @@ public class AppConsumindoRestApi implements CommandLineRunner {
         //SpringApplication.run(AppConsumindoRestApi.class, args).close();
         new SpringApplicationBuilder(AppConsumindoRestApi.class)
             .web(WebApplicationType.NONE)
+            .headless(false)
             .run(args)
             .close();
     }
@@ -25,6 +28,7 @@ public class AppConsumindoRestApi implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        JOptionPane.showMessageDialog(null, "message");
         System.out.println("= PREÇO MÉDIO DOS PRODUTOS ====================== ");
         imprimirMédiaDoPreçoAtualDosProdutos();
 
