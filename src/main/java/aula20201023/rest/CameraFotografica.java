@@ -16,20 +16,20 @@ public class CameraFotografica {
     private int anoLancamento;
 
     @Enumerated(EnumType.STRING)
-    private TipoSensor tipoSensor;
+    private TipoImovel tipoSensor;
 
     public CameraFotografica() {
         id = UUID.randomUUID().toString();
     }
 
-    public CameraFotografica(String modelo, int anoLancamento, TipoSensor tipoSensor) {
+    public CameraFotografica(String modelo, int anoLancamento, TipoImovel tipoSensor) {
         this();
         this.modelo = modelo;
         this.anoLancamento = anoLancamento;
         this.tipoSensor = tipoSensor;
     }
 
-    public CameraFotografica(String id, String modelo, int anoLancamento, TipoSensor tipoSensor) {
+    public CameraFotografica(String id, String modelo, int anoLancamento, TipoImovel tipoSensor) {
         this(modelo, anoLancamento, tipoSensor);
         this.id = id;
 	}
@@ -43,7 +43,7 @@ public class CameraFotografica {
     public int getAnoLancamento() {
         return anoLancamento;
     }
-    public TipoSensor getTipoSensor() {
+    public TipoImovel getTipoSensor() {
         return tipoSensor;
     }
 
